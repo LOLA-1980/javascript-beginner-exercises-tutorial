@@ -1,10 +1,10 @@
 var person = {
-    name: "John",                //String
+    name: "John",
     lastName: "Doe",
-    age: 35,                     //Number
+    age: 35,
     gender: "male",
-    luckyNumbers: [7, 11, 13, 17], //Array
-    significantOther: person2   //Object, yes, the same variable/object defined after
+    luckyNumbers: [7, 11, 13, 17],
+    significantOther: person2
 };
 
 var person2 = {
@@ -18,21 +18,35 @@ var person2 = {
 
 var family = {
     lastName: "Doe",
-    members: [person, person2]   //Array of objects, don't forget to add Jimmy
+    members: [person, person2]   
 };
 
+// Change the fourth luckyNumber of John Doe to 33
+family.members[0].luckyNumbers[3] = 33;
 
+// Create a new person and add it to the family object
+var jimmy = {
+    name: "Jimmy",
+    lastName: "Doe",
+    age: 13,
+    gender: "male",
+    luckyNumbers: [1, 2, 3, 4],
+    significantOther: null
+};
+family.members.push(jimmy);
+
+// Function to calculate the sum of all lucky numbers in the family
 function addAllFamilyLuckyNumbers(anArray){
-  let sumOfAllLuckyNumbers = 0; //sumOfAllLuckyNumbers is a number, the sum of all lucky numbers.
+    let sumOfAllLuckyNumbers = 0;
 
-  //To-Do: loop and add; consider nested loops
-  //Hint: use the anArray variable to get all of the lucky numbers
-  
-  return sumOfAllLuckyNumbers;
+    for (let person of anArray) {
+        for (let luckyNumber of person.luckyNumbers) {
+            sumOfAllLuckyNumbers += luckyNumber;
+        }
+    }
+
+    return sumOfAllLuckyNumbers;
 }
 
-//Enter all your code here:
-
-
-//Do not make changes below:
-console.log(addAllFamilyLuckyNumbers(family.members)); 
+// Print the sum of all lucky numbers in the family
+console.log(addAllFamilyLuckyNumbers(family.members));
